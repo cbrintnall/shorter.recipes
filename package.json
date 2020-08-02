@@ -1,0 +1,29 @@
+{
+  "name": "reci",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "idb-keyval": "^3.2.0",
+    "lodash": "^4.17.19",
+    "react-icons": "^3.10.0"
+  },
+  "devDependencies": {
+    "chalk": "^4.1.0",
+    "gulp": "^4.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "firebase emulators:start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbrintnall/reci.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cbrintnall/reci/issues"
+  },
+  "homepage": "https://github.com/cbrintnall/reci#readme"
+}

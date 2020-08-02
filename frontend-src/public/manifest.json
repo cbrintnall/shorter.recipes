@@ -1,0 +1,16 @@
+{
+  "short_name": "reci",
+  "name": "Shorter Recipes",
+  "description": "A small application used to extract recipe information in an easy to read manner.",
+  "icons": [],
+  "categories": [
+    "food",
+    "health",
+    "lifestyle",
+    "utilities",
+    "productivity"
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#303030"
+}
