@@ -1,28 +1,59 @@
-import React, { useState } from 'react';
-import { parse } from 'query-string';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { useSwipeable } from 'react-swipeable';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
-import constants from '../../settings';
-import { getUrl } from '../../module/getData';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
+import StateManager from '../../lib/stateManager';
+import { events } from '../../lib/constants';
+
+const stateManager = StateManager.getInstance();
+
+function ChecklistItem(props) {
+  const [ disabled, setDisabled ] = useState(false);
+
+  return (
+    <ListGroup.Item
+      className={disabled ? "result-item checked" : "result-item"}
+    >
+      <Row>
+        <Col
+          className="d-flex justify-content-start align-items-center"
+          lg={10}
+          md={10}
+          sm={10}
+          xs={10}
+        >
+          <span className="recipe-text">{ disabled ? <s> { props.content } </s> : props.content }</span>
+        </Col>
+        <Col className="d-flex justify-content-end align-items-center">
+          <div
+            className="search-icon-parent result-icon-parent"
+            onClick={_ => setDisabled(!disabled)}
+          >
+            {
+              disabled ? <AiOutlineClose size={24}/> : <AiOutlineCheck size={24} />
+            }
+          </div>
+        </Col>
+      </Row>
+    </ListGroup.Item>
+  )
+}
 
 function IngredientsList(props) {
-  const isSmaller = window.innerWidth <= constants.breakpoints.smaller;
   return (
-    <ListGroup variant={isSmaller ? "flush" : ""}>
+    <ListGroup variant={"flush"}>
       {
         props.ingredients.map(ingredient => {
           return (
-            <ListGroup.Item
-              className="result-item"
+            <ChecklistItem
+              content={ingredient}
               key={ingredient}
-            >
-              {ingredient}
-            </ListGroup.Item>
+            />
           )
         })
       }
@@ -31,19 +62,15 @@ function IngredientsList(props) {
 }
 
 function InstructionsList(props) {
-  const isSmaller = window.innerWidth <= constants.breakpoints.smaller;
-
   return (
-    <ListGroup variant={isSmaller ? "flush" : undefined}>
+    <ListGroup variant={"flush"}>
       {
         props.instructions.map(instruction => {
           return (
-            <ListGroup.Item
-              className="result-item"
+            <ChecklistItem
+              content={instruction.text}
               key={instruction.text}
-            >
-              {instruction.text}
-            </ListGroup.Item>
+            />
           )
         })
       }
@@ -52,11 +79,39 @@ function InstructionsList(props) {
 }
 
 function MobileLayout(props, data) {
+  const swipeVelocityThreshold = .4;
+
+  const [ activeTab, setActiveTab ] = useState("ingredients");
+
+  const handlers = useSwipeable({
+    onSwipedRight: data => {
+      if (data.velocity >= swipeVelocityThreshold) {
+        setActiveTab(activeTab  === "ingredients" ? "instructions" : "ingredients");
+      }
+    },
+    onSwipedLeft: data => {
+      if (data.velocity >= swipeVelocityThreshold) {
+        setActiveTab(activeTab  === "ingredients" ? "instructions" : "ingredients");
+      }
+    }
+  })
+
+  const listRef = useRef(null);
+
+  useEffect(_ => {
+    window.onscroll = _ => {
+      stateManager.push(events.dimSearchBar, { 
+        atBottom: (window.innerHeight + window.scrollY) >= document.body.scrollHeight,
+        percentage: (window.innerHeight + window.scrollY) / document.body.scrollHeight
+      })
+    }
+  }, [])
+
   return (
-    <Row className="mobile-results-page">
-      <Col>
-        <Tabs defaultActiveKey="ingredients">
-          <Tab eventKey="ingredients" title="Ingredients">
+    <Row className="mobile-results-page" {...handlers}>
+      <Col ref={listRef} style={{ padding: "0px" }}>
+        <Tabs activeKey={activeTab} onSelect={setActiveTab}>
+          <Tab eventKey="ingredients" title="Ingredients" tabClassName="mobile-tab">
             <Row className="mobile-result">
               {
                 data.ingredients &&
@@ -64,7 +119,7 @@ function MobileLayout(props, data) {
               }
             </Row>
           </Tab>
-          <Tab eventKey="instructions" title="Instructions">
+          <Tab eventKey="instructions" title="Instructions" tabClassName="mobile-tab">
             <Row className="mobile-result">
               {
                 data.instructions &&
@@ -83,14 +138,14 @@ function DesktopLayout(props, data) {
     <Row className="desktop-results-page">
       {
         data.ingredients &&
-        <Col className="important">
+        <Col className="important" style={{ marginTop: "20px" }}>
           <h2> Ingredients: </h2>
           <IngredientsList ingredients={data.ingredients} />
         </Col>
       }
       {
         data.instructions &&
-        <Col className="important">
+        <Col className="important" style={{ marginTop: "20px" }}>
           <h2> Instructions: </h2>
           <InstructionsList instructions={data.instructions} />
         </Col>
@@ -106,46 +161,10 @@ function DesktopLayout(props, data) {
 }
 
 export default function ResultsPage(props) {
-  const params = parse(props.location.search)
-  const [data, setData] = useState({})
-  const [querying, setQuerying] = useState(false)
-
-  const dataNeeded = () => !querying && !hasData()
-  const hasData = () => Object.keys(data).length > 0
-
-  if (!params.url) {
-    return <Redirect to={'/search'} />
-  }
-
-  if (dataNeeded()) {
-    setQuerying(true);
-
-    getUrl(params.url)
-      .then(setData)
-      .catch(err => {
-        // TODO: Handle error
-        console.log(err)
-      });
-  }
-
-  const isSmaller = window.innerWidth <= constants.breakpoints.smaller;
+  const { data } = props;
 
   return (
     <Container fluid style={{ margin: "0px" }}>
-      {
-        data.title &&
-        <Row style={{ textAlign: "center" }}>
-          <Col>
-            {
-              isSmaller ? <h2> {data.title} </h2> : <h1> {data.title} </h1>
-            }
-          </Col>
-        </Row>
-      }
-      {
-        hasData() &&
-        <hr />
-      }
       {
         MobileLayout(props, data)
       }
