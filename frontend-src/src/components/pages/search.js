@@ -18,7 +18,7 @@ import ResultsPage from './results';
 import { useHistory } from 'react-router-dom';
 import StateManager from '../../lib/stateManager';
 import { events } from '../../lib/constants';
-import { lerp } from '../../lib/utils';
+import LandingPage from './landing';
 
 const mainComponentStyle = { height: "100%", width: "100%" };
 
@@ -198,6 +198,8 @@ export default function SearchPage(props) {
         .finally(_ => {
           setSearching(false);
         })
+    } else {
+      setResults({})
     }
   }, [url])
 
@@ -210,8 +212,9 @@ export default function SearchPage(props) {
         searchError={searchError}
       />
       {
-        Object.keys(results).length > 0 &&
-        <ResultsPage data={results} />
+        Object.keys(results).length > 0 ?
+        <ResultsPage data={results} /> :
+        <LandingPage />
       }
     </Container>
   )

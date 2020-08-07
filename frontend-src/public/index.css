@@ -56,6 +56,37 @@ body {
   to { background-color: black; }
 }
 
+@keyframes backButtonTranslate {
+  from {
+    transform: translateX(0px) scale(1.0);
+  }
+
+  to {
+    transform: translateX(-10px) scale(1.1);
+  }
+}
+
+.back-button:hover {
+  cursor: pointer;
+}
+
+.back-button:hover > .back-icon {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation-name: backButtonTranslate;
+  animation-duration: .5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.landing-page-container {
+  height: 100%;
+}
+
+.landing-page-body {
+  font-family: 'Roboto Slab', serif;
+}
+
 .result-item {
   text-align: left;
   margin-top: auto;
