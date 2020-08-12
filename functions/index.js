@@ -44,8 +44,14 @@ const getRecipe = (body) => {
 
 const formatResponse = (ld) => {
     let instructions = ld.recipeInstructions;
+
+    console.log(instructions)
+    console.log(ld.recipeIngredient)
+
     const instructionTypes = ld.recipeInstructions.filter(instruction =>
-        instruction['@type'] === 'HowToSection');
+        instruction.itemListElement && 
+        Array.isArray(instruction.itemListElement)
+    );
 
     // If all the instructions are of type 'HowToSection'...
     if (instructionTypes.length === ld.recipeInstructions.length) {

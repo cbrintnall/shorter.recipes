@@ -17,8 +17,14 @@ export const getUrl = (url) => {
                 return fetch(`${constants.urls.serviceUrl}?url=${url}`)
                     .then((r) => r.json())
                     .then(r => {
-                        localStorage.setItem(url, JSON.stringify(r));
-                        return Promise.resolve(r);
+                        if (r.error) {
+                            return Promise.reject("Failed to parse recipe.")
+                        }
+
+                        if (r.instructions && r.ingredients && r.title) {
+                            localStorage.setItem(url, JSON.stringify(r));
+                            return Promise.resolve(r);
+                        }
                     })
             }
         })
