@@ -43,9 +43,20 @@ const getRecipe = (body) => {
 }
 
 const formatResponse = (ld) => {
+    let instructions = ld.recipeInstructions;
+    const instructionTypes = ld.recipeInstructions.filter(instruction =>
+        instruction['@type'] === 'HowToSection');
+
+    // If all the instructions are of type 'HowToSection'...
+    if (instructionTypes.length === ld.recipeInstructions.length) {
+        instructions = ld.recipeInstructions.map(
+            instruction => instruction.itemListElement.flat()
+        ).flat()
+    }
+
     return {
         title: ld.name,
-        instructions: ld.recipeInstructions,
+        instructions: instructions,
         ingredients: ld.recipeIngredient
     }
 }
