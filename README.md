@@ -1,4 +1,4 @@
-# shorter.recipes 🍳
+# [shorter.recipes](https://shorter.recipes/search) 🍳
 
 ## Goals
 
@@ -9,9 +9,9 @@
 
 ## Non-Goals
 
-- [] Create a recipe host website
-- [] Use a database
-- [] Create an insane web-app that takes years to load
+- [ ] Create a recipe host website
+- [ ] Use a database
+- [ ] Create an insane web-app that takes years to load
 
 ## Preview 
 
