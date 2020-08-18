@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const cheerio = require('cheerio')
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
+const { intersection } = require('lodash');
 
 const getRecipe = (body) => {
     const $ = cheerio.load(body)
@@ -45,25 +46,37 @@ const getRecipe = (body) => {
 const formatResponse = (ld) => {
     let instructions = ld.recipeInstructions;
 
-    console.log(instructions)
-    console.log(ld.recipeIngredient)
-
-    const instructionTypes = ld.recipeInstructions.filter(instruction =>
-        instruction.itemListElement && 
-        Array.isArray(instruction.itemListElement)
-    );
-
-    // If all the instructions are of type 'HowToSection'...
-    if (instructionTypes.length === ld.recipeInstructions.length) {
-        instructions = ld.recipeInstructions.map(
-            instruction => instruction.itemListElement.flat()
-        ).flat()
+    if (Array.isArray(instructions)) {
+        const instructionTypes = ld.recipeInstructions.filter(instruction =>
+            instruction.itemListElement && 
+            Array.isArray(instruction.itemListElement)
+        );
+    
+        // If all the instructions are of type 'HowToSection'...
+        if (instructionTypes.length === ld.recipeInstructions.length) {
+            instructions = ld.recipeInstructions.map(
+                instruction => instruction.itemListElement.flat()
+            ).flat()
+        }   
+    } else if (typeof(instructions) === 'string') {
+        instructions = instructions
+            .split('. ')
+            .filter(instruction => !!instruction)
+            .map(instruction => { return { text: instruction.trim() } })
     }
 
     return {
         title: ld.name,
         instructions: instructions,
         ingredients: ld.recipeIngredient
+    }
+}
+
+const constructUrl = url => {
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url
+    } else {
+        return `https://${url}`;
     }
 }
 
@@ -77,7 +90,7 @@ exports.main = functions.https.onRequest((req, res) => {
         res.send(JSON.stringify({ "error": "No URL to extract." }))
     }
 
-    fetch(url)
+    fetch(constructUrl(url))
         .then(r => r.text())
         .then(getRecipe)
         .then(r => {
