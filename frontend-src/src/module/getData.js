@@ -21,7 +21,7 @@ export const getUrl = (url) => {
                             return Promise.reject("Failed to parse recipe.")
                         }
 
-                        if (r.instructions && r.ingredients && r.title) {
+                        if (r.ingredients && r.title) {
                             localStorage.setItem(url, JSON.stringify(r));
                             return Promise.resolve(r);
                         }
