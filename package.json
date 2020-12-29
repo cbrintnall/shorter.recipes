@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "chalk": "^4.1.0",
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "typescript": "^4.1.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

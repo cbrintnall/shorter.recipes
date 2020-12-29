@@ -103,6 +103,7 @@ const _formatProcessOutput = (data, err = false, who = undefined) => {
         .join("\n")
 }
 
+exports.emulators = firebaseEmulatorsStart
 exports.dev = parallel(frontendStart, firebaseEmulatorsStart)
 exports.build = buildFrontend
 exports.deploy = series(buildFrontend, firebaseDeploy)

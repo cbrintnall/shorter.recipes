@@ -3,8 +3,9 @@ import Container from 'react-bootstrap/esm/Container';
 import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import { AiOutlineLeftSquare } from 'react-icons/ai';
+import { RouteComponentProps } from 'react-router-dom';
 
-function AboutPage(props) {
+function AboutPage(props: RouteComponentProps) {
   return (
     <Container className="landing-page-body landing-page-container">
       <Row className="landing-page-container">

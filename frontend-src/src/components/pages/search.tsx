@@ -28,6 +28,21 @@ import { addHistory, addOrRaiseHistory } from '../../lib/history';
 
 const mainComponentStyle = { height: "100%", width: "100%" };
 
+type Results = {
+  title: string
+};
+
+type SearchBarProps = {
+  url: string,
+  results: Results,
+  searching: boolean,
+  searchError: string
+};
+
+type SearchPageProps = {
+
+};
+
 const toggleSearchBarState = () => {
   const buttonVariable = "--search-bar-animation"
   const barVariable = "--search-bar-animation-state"
@@ -46,7 +61,7 @@ const toggleSearchBarState = () => {
   )
 }
 
-function SearchBar(props) {
+function SearchBar(props: SearchBarProps) {
   // Dimmed is used to make sure covered up ingredients / instructions are still visible
   const [searchBarOpacity, setSearchBarOpacity] = useState(100);
   const [url, setUrl] = useState(props.url || "");
@@ -56,21 +71,21 @@ function SearchBar(props) {
 
   const hasValidResult = () => !!(props.results && props.results.title)
 
-  useEffect(_ => {
+  useEffect(() => {
     if (url) {
       isFavorite(url)
         .then(setResultIsFavorited);
     }
   }, [url])
 
-  useEffect(_ => {
+  useEffect(() => {
     toggleSearchBarState()
 
     StateManager
       .getInstance()
       .subscribe(
         events.dimSearchBar,
-        payload => {
+        (payload: any) => {
           const { hidden, visible } = settings.searchBar.opacity;
           setSearchBarOpacity(payload.percentage >= .9 ? hidden : visible);
         }
@@ -178,11 +193,11 @@ function SearchBar(props) {
             placeholder="Paste a URL.."
             aria-label="URL search"
             value={url}
-            onInput={e => setUrl(e.target.value)}
+            onInput={(e: React.FormEvent<HTMLInputElement>)=> setUrl(e.currentTarget.innerText)}
             onChange={e => setUrl(e.target.value)}
           />
           <Button
-            style={{ borderTopLeftRadius: "0px", borderBottomLeftRadius: "0px", zIndex: "3" }}
+            style={{ borderTopLeftRadius: "0px", borderBottomLeftRadius: "0px", zIndex: 3 }}
             as={InputGroup.Append}
             variant="secondary"
             onClick={() => {
@@ -202,32 +217,30 @@ function SearchBar(props) {
   )
 }
 
-export default function SearchPage(props) {
+export default function SearchPage(props: RouteComponentProps) {
   const [searchError, setSearchError] = useState("");
   const [searching, setSearching] = useState(false);
   const [results, setResults] = useState({});
   const { search } = props.history.location;
   const { url } = parse(search)
 
-  useEffect(_ => {
-    if (url) {
+  useEffect(() => {
+    const correctedUrl = url as string;
+
+    if (correctedUrl) {
       // Set searching to true again
       setSearching(true);
       // Reset any search errors
       setSearchError("");
 
-      getUrl(url)
+      getUrl(correctedUrl)
         .then(results => {
-          if (results.error) {
-            setSearchError("Error processing URL.")
-          } else {
-            firebase.analytics().logEvent('search', { search_term: url })
-            addHistory(url, results)
-            setResults(results);
-          }
+          firebase.analytics().logEvent('search' as string, { search_term: url })
+          addHistory(url, results)
+          setResults(results);
         })
         .catch(err => {
-          setSearchError("Error requesting URL.")
+          setSearchError(err)
         })
         .finally(_ => {
           setSearching(false);

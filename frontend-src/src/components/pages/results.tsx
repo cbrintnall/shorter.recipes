@@ -12,7 +12,27 @@ import { events } from '../../lib/constants';
 
 const stateManager = StateManager.getInstance();
 
-function ChecklistItem(props) {
+type Instruction = {
+  text: string;
+};
+
+type ChecklistProps = {
+  content: string;
+};
+
+type IngredientsListProps = {
+  ingredients: string[]
+};
+
+type InstructionsListProps = {
+  instructions: Instruction[]
+};
+
+type ResultsProps = {
+  data: []
+};
+
+function ChecklistItem(props: ChecklistProps) {
   const [ disabled, setDisabled ] = useState(false);
 
   return (
@@ -44,7 +64,7 @@ function ChecklistItem(props) {
   )
 }
 
-function IngredientsList(props) {
+function IngredientsList(props: IngredientsListProps) {
   return (
     <ListGroup variant={"flush"}>
       {
@@ -61,7 +81,7 @@ function IngredientsList(props) {
   )
 }
 
-function InstructionsList(props) {
+function InstructionsList(props: InstructionsListProps) {
   return (
     <ListGroup variant={"flush"}>
       {
@@ -78,7 +98,7 @@ function InstructionsList(props) {
   )
 }
 
-function MobileLayout(props, data) {
+function MobileLayout(data) {
   const swipeVelocityThreshold = .4;
 
   const [ activeTab, setActiveTab ] = useState("ingredients");
@@ -133,7 +153,7 @@ function MobileLayout(props, data) {
   )
 }
 
-function DesktopLayout(props, data) {
+function DesktopLayout(data) {
   return (
     <Row className="desktop-results-page">
       {
@@ -160,16 +180,16 @@ function DesktopLayout(props, data) {
   )
 }
 
-export default function ResultsPage(props) {
+export default function ResultsPage(props: ResultsProps) {
   const { data } = props;
 
   return (
     <Container fluid style={{ margin: "0px" }}>
       {
-        MobileLayout(props, data)
+        MobileLayout(data)
       }
       {
-        DesktopLayout(props, data)
+        DesktopLayout(data)
       }
     </Container>
   )

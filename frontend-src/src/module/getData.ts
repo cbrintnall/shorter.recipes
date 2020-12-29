@@ -1,7 +1,11 @@
 import constants from '../settings';
 import { isFavorite, getFavoriteContents } from '../lib/favorites'
 
-export const getUrl = (url) => {
+type Result = {
+    title: string
+}
+
+export const getUrl = (url: string) => {
     const local = localStorage.getItem(url);
 
     if (local) {

@@ -12,21 +12,36 @@ import _ from 'lodash';
 const adjustHistorySizeBreakpoint = 425;
 const truncateLength = 25;
 
-function LandingPage(props) {
+// TODO: move this
+type RecipeContent = {
+  title: string
+};
+
+type UserHistory = {
+  url: string,
+  content: RecipeContent
+};
+
+function LandingPage() {
   const history = useHistory();
-  const [userHistory, setUserHistory] = useState([]);
+  const [userHistory, setUserHistory] = useState<UserHistory[]>([]);
   const [smallMobile, setSmallMobile] = useState(false);
 
-  useEffect(_ => {
+  useEffect(() => {
 
-    window.onresize = _ =>
+    window.onresize = () =>
       setSmallMobile(window.outerWidth < adjustHistorySizeBreakpoint);
 
     getHistory()
-      .then(setUserHistory);
+      .then(val => {
+        const potentialHistory = val as UserHistory[];
 
-    window.onresize();
+        if (potentialHistory) {
+          setUserHistory(potentialHistory);
+        }
+      });
 
+    window.dispatchEvent(new Event('resize'));
   }, [])
 
   return (
