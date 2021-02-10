@@ -1,5 +1,7 @@
+type StatefulCallback = (x: {}) => void;
+
 class StateManager {
-    static instance;
+    static instance: StateManager;
 
     static getInstance() {
         if (!StateManager.instance) {
@@ -9,17 +11,19 @@ class StateManager {
         return StateManager.instance;
     }
 
+    private subscribers: Record<string, Array<StatefulCallback>> = {};
+
     constructor() {
         this.subscribers = {}
     }
 
-    push(event, payload = {}) {
+    push(event: string, payload = {}) {
         if (!Object.keys(this.subscribers).indexOf(event)) {
             this.subscribers[event].forEach(callback => callback(payload))
         }
     }
 
-    subscribe(event, callback) {
+    subscribe(event: string, callback: StatefulCallback) {
         if (!!Object.keys(this.subscribers).indexOf(event)) {
             this.subscribers[event] = []
         }

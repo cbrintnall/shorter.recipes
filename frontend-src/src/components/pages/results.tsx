@@ -29,7 +29,12 @@ type InstructionsListProps = {
 };
 
 type ResultsProps = {
-  data: []
+  data: Result
+};
+
+type Result = {
+  instructions: Instruction[];
+  ingredients: string[];
 };
 
 function ChecklistItem(props: ChecklistProps) {
@@ -98,7 +103,7 @@ function InstructionsList(props: InstructionsListProps) {
   )
 }
 
-function MobileLayout(data) {
+function MobileLayout(data: Result) {
   const swipeVelocityThreshold = .4;
 
   const [ activeTab, setActiveTab ] = useState("ingredients");
@@ -118,8 +123,8 @@ function MobileLayout(data) {
 
   const listRef = useRef(null);
 
-  useEffect(_ => {
-    window.onscroll = _ => {
+  useEffect(() => {
+    window.onscroll = () => {
       stateManager.push(events.dimSearchBar, { 
         atBottom: (window.innerHeight + window.scrollY) >= document.body.scrollHeight,
         percentage: (window.innerHeight + window.scrollY) / document.body.scrollHeight
@@ -130,7 +135,7 @@ function MobileLayout(data) {
   return (
     <Row className="mobile-results-page" {...handlers}>
       <Col ref={listRef} style={{ padding: "0px" }}>
-        <Tabs activeKey={activeTab} onSelect={setActiveTab}>
+        <Tabs activeKey={activeTab} onSelect={setActiveTab as any}>
           <Tab eventKey="ingredients" title="Ingredients" tabClassName="mobile-tab">
             <Row className="mobile-result">
               {
@@ -153,7 +158,7 @@ function MobileLayout(data) {
   )
 }
 
-function DesktopLayout(data) {
+function DesktopLayout(data: Result) {
   return (
     <Row className="desktop-results-page">
       {

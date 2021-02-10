@@ -10,19 +10,19 @@
 
 import { set, get, keys, del } from 'idb-keyval';
 
-export const removeFavorite = async url => {
+export const removeFavorite = async (url: string) => {
     return del(url);
 }
 
-export const markFavorite = async (url, contents) => {
+export const markFavorite = async (url: string, contents: any) => {
     return set(url, contents);
 }
 
-export const isFavorite = async url => {
+export const isFavorite = async (url: string) => {
     return get(url).then(val => Promise.resolve(!!val));
 }
 
-export const getFavoriteContents = async url => {
+export const getFavoriteContents = async (url: string) => {
     return get(url);
 }
 

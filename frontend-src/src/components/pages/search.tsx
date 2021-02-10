@@ -17,7 +17,7 @@ import {
 } from 'react-icons/ai';
 import { getUrl } from '../../module/getData';
 import ResultsPage from './results';
-import { useHistory } from 'react-router-dom';
+import { RouteComponentProps, useHistory } from 'react-router-dom';
 import StateManager from '../../lib/stateManager';
 import { events } from '../../lib/constants';
 import LandingPage from './landing';

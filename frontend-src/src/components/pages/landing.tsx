@@ -4,7 +4,6 @@ import Row from 'react-bootstrap/esm/Row';
 import Col from 'react-bootstrap/esm/Col';
 import { landingUrls } from '../../lib/constants';
 import { getHistory, clearHistory } from '../../lib/history';
-import { AiOutlineHistory } from 'react-icons/ai';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
 import _ from 'lodash';
