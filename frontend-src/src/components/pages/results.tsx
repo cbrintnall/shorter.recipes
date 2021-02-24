@@ -185,7 +185,8 @@ function DesktopLayout(data: Result) {
   )
 }
 
-export default function ResultsPage(props: ResultsProps) {
+// TODO add back in props ResultsProps
+export default function ResultsPage(props: any) {
   const { data } = props;
 
   return (

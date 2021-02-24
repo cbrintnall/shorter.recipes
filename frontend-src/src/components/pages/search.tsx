@@ -28,8 +28,8 @@ import { addHistory, addOrRaiseHistory } from '../../lib/history';
 
 const mainComponentStyle = { height: "100%", width: "100%" };
 
-type Results = {
-  title: string
+export type Results = {
+  title?: string
 };
 
 type SearchBarProps = {
@@ -220,7 +220,7 @@ function SearchBar(props: SearchBarProps) {
 export default function SearchPage(props: RouteComponentProps) {
   const [searchError, setSearchError] = useState("");
   const [searching, setSearching] = useState(false);
-  const [results, setResults] = useState({});
+  const [results, setResults] = useState<Results>({});
   const { search } = props.history.location;
   const { url } = parse(search)
 
@@ -234,15 +234,15 @@ export default function SearchPage(props: RouteComponentProps) {
       setSearchError("");
 
       getUrl(correctedUrl)
-        .then(results => {
+        .then((results) => {
           firebase.analytics().logEvent('search' as string, { search_term: url })
-          addHistory(url, results)
-          setResults(results);
+          addHistory(url as string, results) // TODO: handle ' as string '
+          setResults(results as Results);
         })
         .catch(err => {
           setSearchError(err)
         })
-        .finally(_ => {
+        .finally(() => {
           setSearching(false);
         })
     } else {
@@ -254,7 +254,7 @@ export default function SearchPage(props: RouteComponentProps) {
     <Container fluid style={{ ...mainComponentStyle, padding: "0px" }}>
       <SearchBar
         results={results}
-        url={url}
+        url={url as string} // TODO: handle the error case here
         searching={searching}
         searchError={searchError}
       />

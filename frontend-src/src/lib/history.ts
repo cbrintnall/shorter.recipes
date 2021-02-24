@@ -3,22 +3,24 @@ import settings from '../settings';
 
 const historyKey = 'recipeHistory'
 
-const urlInHistory = async(url) => {
+// TODO: un-any this entire file
+
+const urlInHistory = async(url: string) => {
     return getHistory()
-        .then(history => {
+        .then((history: any) => {
             if(!!history)  {
-                return Promise.resolve( !history.map(hist => hist.url).indexOf(url) );
+                return Promise.resolve( !history.map((hist: any) => hist.url).indexOf(url) );
             } else {
                 return Promise.reject();
             }
         })
 }
 
-const moveResultUrlToFront = async(url) => {
+const moveResultUrlToFront = async(url: string) => {
     return getHistory()
-        .then(history => {
-            const matchedUrl = history.filter(hist => hist.url === url)
-            const newResults = history.filter(hist => hist.url !== url)
+        .then((history: any) => {
+            const matchedUrl = history.filter((hist: any) => hist.url === url)
+            const newResults = history.filter((hist: any) => hist.url !== url)
 
             if (matchedUrl.length > 0) {
                 const newFirst = matchedUrl[0]
@@ -30,11 +32,11 @@ const moveResultUrlToFront = async(url) => {
         })
 }
 
-export const addHistory = async (url, content) => {
+export const addHistory = async (url: string, content: any) => {
     const historyObj = { url, content }
 
     get(historyKey)
-        .then(result => {
+        .then((result: any) => {
             if (!result) {
                 set(historyKey, [historyObj])
             } else {
@@ -57,7 +59,7 @@ export const addHistory = async (url, content) => {
 
 // Takes in a url and its result, if the URL is already in the history
 // the result becomes the most recently visited, and nothing else changes.
-export const addOrRaiseHistory = async(url, results) => {
+export const addOrRaiseHistory = async(url: string, results: any) => {
     urlInHistory(url)
         .then(wasTrue => {
             if (wasTrue) {

@@ -34,6 +34,6 @@ export const getFavoritedSiteNames = async() => {
     return getFavoritedSites()
         .then(keys => 
             Promise.all(keys.map(key => get(key)))
-                .then(contents => Promise.resolve(contents.map(content => content.title)))
+                .then(contents => Promise.resolve(contents.map(content => (content as any).title)))
         )
 }
