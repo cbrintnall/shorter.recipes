@@ -325,6 +325,10 @@ input.search-entry-input:focus {
   }
 }
 
+.login-button {
+  background-color: #212529 !important;
+}
+
 @media screen and (min-width: 663px) {
   .errors {
     padding-left: 30px;

@@ -6,6 +6,7 @@ import { landingUrls } from '../../lib/constants';
 import { getHistory, clearHistory } from '../../lib/history';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from 'react-router-dom';
+import { SignInButtons } from '../login-button';
 import _ from 'lodash';
 
 const adjustHistorySizeBreakpoint = 425;
@@ -48,6 +49,8 @@ function LandingPage() {
       <Row className="landing-page-container">
         <Col className={smallMobile ? "d-flex align-items-center flex-column" : "d-flex align-items-center"}>
           <div className={"shadow p-3 " + (smallMobile ? "m-2" : "")}>
+            <SignInButtons/>
+            <hr />
             <h1> Hello! <span role="img" aria-label="waving hand emoji">👋</span> </h1>
             <p> Thanks for using "<b>shorter.recipes</b>" </p>
             <p> Please use the search bar below to enter a url, simplify the recipe, and get cookin.</p>
