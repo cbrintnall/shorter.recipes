@@ -9,6 +9,7 @@ import './lib/utils';
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+firebase.auth().useEmulator('http://localhost:9099');
 
 ReactDOM.render(
   <React.StrictMode>
