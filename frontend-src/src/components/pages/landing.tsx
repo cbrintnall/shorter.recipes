@@ -10,10 +10,7 @@ import { SignInButtons } from "../login-button";
 import _ from "lodash";
 import { UserContext } from "../../lib/auth";
 import * as firebase from "firebase";
-import {
-  AiOutlineHeart,
-  AiFillHeart
-} from 'react-icons/ai';
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const adjustHistorySizeBreakpoint = 425;
 const truncateLength = 25;
@@ -38,9 +35,10 @@ function LoggedInHeader() {
         Sign out
       </Button>
       <div className="ml-auto">
-        <AiFillHeart
-          size={24}
-        />
+        {/* <UserContext.Consumer>
+          { value => <span> Hey, { value?.displayName?.split(' ')[0] } </span> }
+        </UserContext.Consumer> */}
+        <AiFillHeart size={24} />
       </div>
     </div>
   );
@@ -88,11 +86,17 @@ function LandingPage() {
             </UserContext.Consumer>
             <hr />
             <h1>
-              {" "}
-              Hello!{" "}
-              <span role="img" aria-label="waving hand emoji">
-                👋
-              </span>{" "}
+              <UserContext.Consumer>
+                {(value) => (
+                  <div>
+                    {" "}
+                    Hello{(value?.displayName && ', ' + value?.displayName?.split(' ')[0]) ?? ""}{" "}
+                    <span role="img" aria-label="waving hand emoji">
+                      👋
+                    </span>{" "}
+                  </div>
+                )}
+              </UserContext.Consumer>
             </h1>
             <p>
               {" "}
