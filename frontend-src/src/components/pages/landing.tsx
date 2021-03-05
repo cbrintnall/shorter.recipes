@@ -28,17 +28,16 @@ type UserHistory = {
 function LoggedInHeader() {
   return (
     <div className="d-flex align-items-center">
-      <Button
-        className="login-button"
-        onClick={() => firebase.auth().signOut()}
-      >
-        Sign out
-      </Button>
       <div className="ml-auto">
         {/* <UserContext.Consumer>
           { value => <span> Hey, { value?.displayName?.split(' ')[0] } </span> }
         </UserContext.Consumer> */}
-        <AiFillHeart size={24} />
+        <Button
+          className="login-button"
+          onClick={() => firebase.auth().signOut()}
+        >
+          Sign out
+        </Button>
       </div>
     </div>
   );

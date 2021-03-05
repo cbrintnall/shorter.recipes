@@ -329,6 +329,15 @@ input.search-entry-input:focus {
   background-color: #212529 !important;
 }
 
+.signin-button {
+  display: 'inline' !important; 
+  padding: '4px';
+}
+
+.signin-button:hover {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 663px) {
   .errors {
     padding-left: 30px;
