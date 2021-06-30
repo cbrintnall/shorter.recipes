@@ -14,12 +14,22 @@ if (process.env.NODE_ENV === 'test') {
   firebase.auth().useEmulator('http://localhost:9099');
 }
 
-ReactDOM.render(
+const application = (
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
+)
+
+ReactDOM.hydrate(
+  application,
   document.getElementById('root')
-);
+)
+
+// TODO: Add depending on flag
+// ReactDOM.render(
+//   application,
+//   document.getElementById('root')
+// );
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

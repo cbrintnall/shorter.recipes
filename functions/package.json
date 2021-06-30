@@ -12,12 +12,24 @@
     "node": "12"
   },
   "dependencies": {
+    "bootstrap": "^4.5.0",
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "4.17.1",
+    "firebase": "^7.17.2",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1",
-    "node-fetch": "^2.6.0"
+    "idb-keyval": "^3.2.0",
+    "lodash": "^4.17.19",
+    "node-fetch": "^2.6.0",
+    "query-string": "^6.13.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.2.2",
+    "react-dom": "^16.13.1",
+    "react-icons": "^3.10.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.1",
+    "react-swipeable": "^5.5.1"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.2.0"

@@ -14,6 +14,9 @@
     ]
   },
   "emulators": {
+    "storage": {
+      "port": 9090
+    },
     "functions": {
       "port": 5001
     },
@@ -29,5 +32,11 @@
     "auth": {
       "port": 9099
     }
+  },
+  "functions": {
+    "source": "functions"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }

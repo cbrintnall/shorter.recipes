@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Container from "react-bootstrap/esm/Container";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
+import { Container, Row, Col } from "react-bootstrap";
 import { landingUrls } from "../../lib/constants";
 import { getHistory, clearHistory } from "../../lib/history";
 import Button from "react-bootstrap/Button";

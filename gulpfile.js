@@ -20,7 +20,7 @@ const firebaseEmulatorsStart = cb => {
         console.log(_formatProcessOutput(data, true, firebaseCommandBase));
     })
 
-    emulators.on("close", code => {
+    emulators.on("close", data => {
         console.log(_formatProcessOutput(data, false, firebaseCommandBase));
         cb();
     })
@@ -41,7 +41,7 @@ const frontendStart = cb => {
         console.info(_formatProcessOutput(data, true, frontendCommandBase));
     })
 
-    compiler.on("close", code => {
+    compiler.on("close", data => {
         console.log(_formatProcessOutput(data, true, frontendCommandBase));
         cb();
     })
