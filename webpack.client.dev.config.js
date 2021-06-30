@@ -2,10 +2,14 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin')
 
+const manifestOptions = {
+  fileName: path.resolve(__dirname, 'functions', '.runtimeconfig.json')
+}
+
 module.exports = {
   name: 'client',
   entry: {
-    client: path.resolve(__dirname, 'src/frontend-src/src/index.tsx'),
+    client: path.resolve(__dirname, 'src/frontend/index.tsx'),
   },
   mode: 'development',
   output: {
@@ -28,5 +32,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [new CleanWebpackPlugin(), new WebpackManifestPlugin()],
+  plugins: [new CleanWebpackPlugin(), new WebpackManifestPlugin(manifestOptions)],
 }

@@ -17,9 +17,5 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react"
-  },
-  "include": [
-    "src/frontend-src/src/**/*"
-  ],
-  "exclude": ["node_modules"]
+  }
 }

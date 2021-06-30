@@ -1,8 +1,15 @@
+import { compile } from 'handlebars';
+import ReactDOMServer from 'react-dom/server'
+// TODO: Isolate frontend into its own package
+import App from '../frontend/App';
+import Settings from './settings';
+
+// TODO: CSS, favicon
+const indexHTML =`
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#303030" />
     <meta
@@ -19,13 +26,27 @@
       integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
       crossorigin="anonymous"
     />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <script defer="defer" src="{{asset}}"></script>
     <title>Shorter Recipes</title>
   </head>
   <body>
     <noscript>
       You'll need Javascript enabled, we hope to have a "minimal" JS version soon.
     </noscript>
-    <div id="root"></div>
+    <div id="root">{{content}}</div>
   </body>
 </html>
+`
+
+export const ssr = (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+
+  const application = ReactDOMServer.renderToString(App);
+  const template = compile(indexHTML)
+  const payload = {
+      asset: 'http://localhost:9090/default-bucket/client.9ced0ac2abf2d8f8723f.js', 
+      content: application
+  }
+
+  res.send(template(payload))
+}
