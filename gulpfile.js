@@ -1,4 +1,4 @@
-const { spawn } = require("child_process");
+const { spawn, exec } = require("child_process");
 const { parallel, series } = require("gulp");
 const path = require('path');
 const chalk = require('chalk');
@@ -107,11 +107,34 @@ const _formatProcessOutput = (data, err = false, who = undefined) => {
         .join("\n")
 }
 
-exports.emulators = firebaseEmulatorsStart
+// Must be ran as admin on Windows.
+exports.setup = series(
+    cb => {
+        const basePackagePath = path.resolve(__dirname, 'package.json');
+        const functionsPath = path.resolve(__dirname, 'functions');
+        const copiedPackagePath = path.resolve(functionsPath, 'package.json');
+
+        // Create functions dir if doesn't exist yet
+        if (!fs.existsSync('functions')){
+            fs.mkdirSync('functions');
+            console.log('Created functions directory')
+        }
+
+        if (!fs.existsSync(copiedPackagePath)) {
+            fs.copyFileSync(basePackagePath, copiedPackagePath);
+            console.log('Copied package.json')
+        }
+
+        exec('yarn install', { cwd: path.resolve(__dirname, 'functions') }, err => {
+            console.log('Setup done');
+            console.log(err)
+            cb()
+        })
+    }
+)
+
 exports.dev = parallel(
     cb => _watchCommand("yarn", ["watch:client"], cb),
     cb => _watchCommand("yarn", ["watch:server"], cb),
     firebaseEmulatorsStart
 )
-exports.build = buildFrontend
-exports.deploy = series(buildFrontend, firebaseDeploy)

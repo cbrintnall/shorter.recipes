@@ -3,12 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import { landingUrls } from "../../lib/constants";
 import { getHistory, clearHistory } from "../../lib/history";
 import Button from "react-bootstrap/Button";
-import { useHistory } from "react-router-dom";
+import { useHistory, generatePath, Link } from "react-router-dom";
 import { SignInButtons } from "../login-button";
 import _ from "lodash";
 import { UserContext } from "../../lib/auth";
 import * as firebase from "firebase";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const adjustHistorySizeBreakpoint = 425;
 const truncateLength = 25;
@@ -109,9 +108,19 @@ function LandingPage() {
               {landingUrls.map((url, i) => {
                 return (
                   <span key={url.url}>
-                    <a rel="noopener noreferrer" target="_blank" href={url.url}>
-                      {url.title}
-                    </a>
+                    {
+                      url.internal 
+                        ? (
+                          <Link rel="noopener noreferrer" target="_blank" to={url.url}>
+                            {url.title}
+                          </Link>
+                        )
+                        : (
+                          <a rel="noopener noreferrer" target="_blank" href={generatePath(url.url)}>
+                            {url.title}
+                          </a>
+                        )
+                    }
                     {
                       // This is to ensure we don't put a bar at the very end of the list.
                       i !== landingUrls.length - 1 && <span> | </span>

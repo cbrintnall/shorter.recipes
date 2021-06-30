@@ -17,7 +17,7 @@ import {
   AiFillHeart
 } from 'react-icons/ai';
 import { FiShare } from 'react-icons/fi';
-import { useHistory } from 'react-router-dom';
+import { useHistory, generatePath } from 'react-router-dom';
 import StateManager from '../lib/stateManager';
 import { events } from '../lib/constants';
 
@@ -162,7 +162,7 @@ export default function SearchBar(props) {
                   <AiOutlineClose
                     className="search-icon"
                     size={24}
-                    onClick={_ => history.push("/search")}
+                    onClick={_ => history.push(generatePath("/search"))}
                   />
                 </div>
               </div>

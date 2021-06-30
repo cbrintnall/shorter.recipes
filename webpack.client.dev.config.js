@@ -30,6 +30,10 @@ module.exports = {
           configFile: 'tsconfig.json',
         },
       },
+      {
+        test: /\.css?$/,
+        loader: 'css-loader'
+      }
     ],
   },
   plugins: [new CleanWebpackPlugin(), new WebpackManifestPlugin(manifestOptions)],

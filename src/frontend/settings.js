@@ -33,6 +33,7 @@ const common = {
 const development = {
     ...common,
     urls: {
+        functionBasePath: "/yadev-firebase/us-central1/ssr",
         serviceUrl: "http://localhost:5001/yadev-firebase/us-central1/main",
         sampleUrl: "https://www.allrecipes.com/recipe/6874/best-ever-muffins/"
     }
@@ -41,6 +42,7 @@ const development = {
 const production = {
     ...common,
     urls: {
+        functionBasePath: "",
         serviceUrl: "https://us-central1-yadev-firebase.cloudfunctions.net/main",
         sampleUrl: "https://www.allrecipes.com/recipe/6874/best-ever-muffins/"
     }

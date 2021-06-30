@@ -32,6 +32,7 @@
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^5.2.6",
     "firebase-tools": "^9.14.0",
     "gulp": "^4.0.2",
     "ts-loader": "^9.2.3",
@@ -56,6 +57,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "engines": {
+    "node": "12"
   },
   "scripts": {
     "build:client:dev": "webpack --config webpack.client.dev.config.js",

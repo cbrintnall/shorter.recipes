@@ -1,5 +1,8 @@
+import * as functions from 'firebase-functions';
 import { compile } from 'handlebars';
+import React from 'react';
 import ReactDOMServer from 'react-dom/server'
+import { StaticRouter } from 'react-router';
 // TODO: Isolate frontend into its own package
 import App from '../frontend/App';
 import Settings from './settings';
@@ -41,12 +44,27 @@ const indexHTML =`
 export const ssr = (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
 
-  const application = ReactDOMServer.renderToString(App);
-  const template = compile(indexHTML)
-  const payload = {
-      asset: 'http://localhost:9090/default-bucket/client.9ced0ac2abf2d8f8723f.js', 
-      content: application
-  }
+  const bundlePath = functions.config()["client.js"];
 
-  res.send(template(payload))
+  // TODO: we should display an error page or something.
+  if (!bundlePath) {
+    res.status(500)
+    res.send("Please report this error.")
+  } else {
+    console.log(`URL: ${req.url}, serving bundle: ${bundlePath}`);
+
+    const application = ReactDOMServer.renderToString(
+      <StaticRouter location={req.url} context={{}}>
+        <App />
+      </StaticRouter>
+    );
+
+    const template = compile(indexHTML)
+    const payload = {
+        asset: `${Settings.hostBase}/${bundlePath}`, 
+        content: application
+    }
+  
+    res.send(template(payload))
+  }
 }

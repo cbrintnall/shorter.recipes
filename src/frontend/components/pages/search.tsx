@@ -24,7 +24,7 @@ import LandingPage from './landing';
 import * as firebase from 'firebase/app';
 import settings from '../../settings';
 import { isFavorite, markFavorite, removeFavorite } from '../../lib/favorites';
-import { addHistory, addOrRaiseHistory } from '../../lib/history';
+import { addHistory } from '../../lib/history';
 
 const mainComponentStyle = { height: "100%", width: "100%" };
 
@@ -37,10 +37,6 @@ type SearchBarProps = {
   results: Results,
   searching: boolean,
   searchError: string
-};
-
-type SearchPageProps = {
-
 };
 
 const toggleSearchBarState = () => {
