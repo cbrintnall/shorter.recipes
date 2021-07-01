@@ -4,9 +4,10 @@ import {
   Route,
   Redirect
 } from 'react-router-dom';
-
 import AboutPage from './components/pages/about';
 import SearchPage from './components/pages/search';
+
+import './index.css';
 
 function App() {
   return (

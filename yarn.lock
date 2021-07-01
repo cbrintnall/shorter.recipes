@@ -2114,6 +2114,11 @@
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.8.tgz#49348387983075705fe8f4e02fb67f7daaec4934"
   integrity sha512-S78QIYirQcUoo6UJZx9CSP0O2ix9IaeAXwQi26Rhr/+mg7qqPy8TzaxHSUut7eGjL8WmLccT7/MXf304WjqHcA==
 
+"@types/html-minifier-terser@^5.0.0":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@types/html-minifier-terser/-/html-minifier-terser-5.1.1.tgz#3c9ee980f1a10d6021ae6632ca3e79ca2ec4fb50"
+  integrity sha512-giAlZwstKbmvMk1OO7WXSj4OZ0keXAcl2TQq4LWHiiPH2ByaH7WeUzng+Qej8UPxxv+8lRTuouo0iaNDBuzIBA==
+
 "@types/invariant@^2.2.33":
   version "2.2.34"
   resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.34.tgz#05e4f79f465c2007884374d4795452f995720bbe"
@@ -4742,6 +4747,17 @@ cosmiconfig@^6.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.7.2"
+
+cosmiconfig@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-7.0.0.tgz#ef9b44d773959cae63ddecd122de23853b60f8d3"
+  integrity sha512-pondGvTuVYDk++upghXJabWzL6Kxu6f26ljFw64Swq9v6sQPUL3EUlVDV56diOjpCayKihL6hVe8exIACU4XcA==
+  dependencies:
+    "@types/parse-json" "^4.0.0"
+    import-fresh "^3.2.1"
+    parse-json "^5.0.0"
+    path-type "^4.0.0"
+    yaml "^1.10.0"
 
 crc-32@^1.2.0:
   version "1.2.0"
@@ -7741,6 +7757,17 @@ html-webpack-plugin@4.0.0-beta.11:
     tapable "^1.1.3"
     util.promisify "1.0.0"
 
+html-webpack-plugin@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.3.2.tgz#7b04bf80b1f6fe84a6d3f66c8b79d64739321b08"
+  integrity sha512-HvB33boVNCz2lTyBsSiMffsJ+m0YLIQ+pskblXgN9fnjS1BgEcuAfdInfXfGrkdXV406k9FiDi86eVCDBgJOyQ==
+  dependencies:
+    "@types/html-minifier-terser" "^5.0.0"
+    html-minifier-terser "^5.0.1"
+    lodash "^4.17.21"
+    pretty-error "^3.0.4"
+    tapable "^2.0.0"
+
 htmlparser2@^6.1.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-6.1.0.tgz#c4d762b6c3371a05dbe65e94ae43a9f845fb8fb7"
@@ -7943,7 +7970,7 @@ import-fresh@^2.0.0:
     caller-path "^2.0.0"
     resolve-from "^3.0.0"
 
-import-fresh@^3.0.0, import-fresh@^3.1.0:
+import-fresh@^3.0.0, import-fresh@^3.1.0, import-fresh@^3.2.1:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.3.0.tgz#37162c25fcb9ebaa2e6e53d5b4d88ce17d9e0c2b"
   integrity sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==
@@ -9467,6 +9494,11 @@ kleur@^3.0.3:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+klona@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
+  integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
+
 kuler@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/kuler/-/kuler-2.0.0.tgz#e2c570a3800388fb44407e851531c1d670b061b3"
@@ -10221,6 +10253,13 @@ mini-css-extract-plugin@0.9.0:
     normalize-url "1.9.1"
     schema-utils "^1.0.0"
     webpack-sources "^1.1.0"
+
+mini-css-extract-plugin@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.0.0.tgz#e3492a2dcd218a6103e4dec5e3a88b55157012ea"
+  integrity sha512-LzJaninAMkfVAUDldZ4lUidAeS8GD0w8tSUbZLscYXWmdTOjYuEoiIhwKvwHX6+42D2cRAl35pA9DHtvAv71JQ==
+  dependencies:
+    schema-utils "^3.0.0"
 
 minimalistic-assert@^1.0.0, minimalistic-assert@^1.0.1:
   version "1.0.1"
@@ -11730,6 +11769,15 @@ postcss-loader@3.0.0:
     postcss-load-config "^2.0.0"
     schema-utils "^1.0.0"
 
+postcss-loader@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-6.1.0.tgz#13c800a00b3c7d434a1319a73d85e2df0714cdde"
+  integrity sha512-yA/cXBfACkthZNA2hQxOnaReVfQ6uLmvbEDQzNafpbK40URZJvP/28dL1DG174Gvz3ptkkHbbwDBCh+gXR94CA==
+  dependencies:
+    cosmiconfig "^7.0.0"
+    klona "^2.0.4"
+    semver "^7.3.5"
+
 postcss-logical@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/postcss-logical/-/postcss-logical-3.0.0.tgz#2495d0f8b82e9f262725f75f9401b34e7b45d5b5"
@@ -12215,6 +12263,14 @@ pretty-error@^2.1.1:
   dependencies:
     lodash "^4.17.20"
     renderkid "^2.0.4"
+
+pretty-error@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/pretty-error/-/pretty-error-3.0.4.tgz#94b1d54f76c1ed95b9c604b9de2194838e5b574e"
+  integrity sha512-ytLFLfv1So4AO1UkoBF6GXQgJRaKbiSiGFICaOPNwQ3CMvBvXpLRubeQWyPGnsbV/t9ml9qto6IeCsho0aEvwQ==
+  dependencies:
+    lodash "^4.17.20"
+    renderkid "^2.0.6"
 
 pretty-format@^24.9.0:
   version "24.9.0"
@@ -13060,7 +13116,7 @@ remove-trailing-separator@^1.0.1, remove-trailing-separator@^1.1.0:
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
   integrity sha1-wkvOKig62tW8P1jg1IJJuSN52O8=
 
-renderkid@^2.0.4:
+renderkid@^2.0.4, renderkid@^2.0.6:
   version "2.0.7"
   resolved "https://registry.yarnpkg.com/renderkid/-/renderkid-2.0.7.tgz#464f276a6bdcee606f4a15993f9b29fc74ca8609"
   integrity sha512-oCcFyxaMrKsKcTY59qnCAtmDVSLfPbrv6A3tVbPdFMMrv5jaK10V6m40cKsoPNhAqN6rmHW9sswW4o3ruSrwUQ==
@@ -14281,6 +14337,11 @@ style-loader@0.23.1:
   dependencies:
     loader-utils "^1.1.0"
     schema-utils "^1.0.0"
+
+style-loader@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-3.0.0.tgz#2eafcd0dbe70b07438e0256a9714ea94dd63cbe0"
+  integrity sha512-pqJTDiCtLr8D2eyVWXPiwNkLsAMDuvPHnu+Z/Edo9hu+DzdJwdO5eZv9zUBF6tWI8GJGhAkenWJaVjXI+sHnuQ==
 
 stylehacks@^4.0.0:
   version "4.0.3"

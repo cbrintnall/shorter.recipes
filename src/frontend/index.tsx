@@ -4,7 +4,6 @@ import App from './App';
 import * as firebase from 'firebase/app';
 import { firebaseConfig } from './settings';
 import settings from './settings';
-import './index.css';
 import 'firebase/analytics';
 import './lib/utils';
 import { BrowserRouter } from 'react-router-dom';

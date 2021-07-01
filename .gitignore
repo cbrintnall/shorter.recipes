@@ -36,3 +36,5 @@ dist/
 
 functions/*
 !functions/package.json
+
+src/index.html
