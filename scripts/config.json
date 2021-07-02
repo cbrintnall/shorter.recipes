@@ -1,0 +1,15 @@
+
+{
+  "deploy": {
+    "development": {
+      "project": "reci-dev-9dc80",
+      "serverBuild": "build:server:dev",
+      "clientBuild": "build:client:dev"
+    },
+    "production": {
+      "project": "yadev-firebase",
+      "serverBuild": "build:server:prod",
+      "clientBuild": "build:client:prod"
+    }
+  }
+}

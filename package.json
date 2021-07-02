@@ -5,8 +5,6 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "cheerio": "^1.0.0-rc.3",
-    "cors": "^2.8.5",
-    "express": "4.17.1",
     "firebase": "^8.6.8",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1",
@@ -31,6 +29,7 @@
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^5.2.6",
     "firebase-tools": "^9.14.0",
     "gulp": "^4.0.2",
@@ -42,8 +41,7 @@
     "typescript": "^4.3.4",
     "webpack": "^5.41.1",
     "webpack-cli": "^4.7.2",
-    "webpack-dev-server": "^3.11.2",
-    "webpack-manifest-plugin": "^3.1.1",
+    "webpack-merge": "^5.8.0",
     "webpack-node-externals": "^3.0.0"
   },
   "eslintConfig": {
@@ -65,11 +63,15 @@
     "node": "12"
   },
   "scripts": {
-    "build:client:dev": "webpack --config webpack/webpack.client.dev.config.js",
-    "build:server:dev": "webpack --config webpack/webpack.server.dev.config.js",
-    "watch:client": "webpack --watch --config webpack/webpack.client.dev.config.js",
-    "watch:server": "webpack --watch --config webpackwebpack.server.dev.config.js",
+    "deploy:dev": "node ./scripts/deploy.js",
+    "build:client:prod": "webpack --config webpack/webpack.config.js --env BUNDLE=client --env BUILD=production",
+    "build:server:prod": "webpack --config webpack/webpack.config.js --env BUNDLE=server --env BUILD=production",
+    "build:client:dev": "webpack --config webpack/webpack.config.js --env BUNDLE=client --env BUILD=development",
+    "build:server:dev": "webpack --config webpack/webpack.config.js --env BUNDLE=server --env BUILD=development",
+    "watch:client": "webpack --watch --config webpack/webpack.config.js --env BUNDLE=client",
+    "watch:server": "webpack --watch --config webpack/webpack.config.js --env BUNDLE=server",
     "dev": "gulp dev",
+    "setup": "gulp setup",
     "start": "firebase emulators:start"
   },
   "repository": {

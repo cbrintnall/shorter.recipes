@@ -4,7 +4,6 @@ const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
 
-const frontendFolder = "frontend-src"
 const firebaseCommandBase = "firebase"
 const outputPadAmount = 20;
 
@@ -35,45 +34,10 @@ const firebaseEmulatorsStart = cb => {
     })
 }
 
-const buildFrontend = cb => {
-    const compileFrontend = spawn("npm", [ "run", "build" ], { shell: true, cwd: path.join(__dirname, frontendFolder) })
-
-    compileFrontend.stdout.on("data", data => {
-        console.log(_formatProcessOutput(data, false, "build"));
-    })
-
-    compileFrontend.stderr.on("data", data => {
-        console.info(_formatProcessOutput(data, true, "build"));
-    })
-
-    compileFrontend.on("close", code => {
-        fs.renameSync(path.join(__dirname, frontendFolder, "build"), path.join(__dirname, "build"))
-        cb();
-    })
-
-    compileFrontend.on("error", error => {
-        cb(new Error(error));
-    })
-}
-
 const firebaseDeploy = cb => {
-    const deploy = spawn(firebaseCommandBase, [ "deploy" ], { shell: true })
+    const environment = process.env.NODE_ENV || 'development';
 
-    deploy.stdout.on("data", data => {
-        console.log(_formatProcessOutput(data, false, "build"));
-    })
-
-    deploy.stderr.on("data", data => {
-        console.info(_formatProcessOutput(data, true, "build"));
-    })
-
-    deploy.on("close", code => {
-        cb();
-    })
-
-    deploy.on("error", error => {
-        cb(new Error(error));
-    })
+    console.log(`Deploying env ${environment}`);
 }
 
 const _watchCommand = (command, args, cb, options = {}) => {
@@ -138,3 +102,5 @@ exports.dev = parallel(
     cb => _watchCommand("yarn", ["watch:server"], cb),
     firebaseEmulatorsStart
 )
+
+exports.deploy = firebaseDeploy;

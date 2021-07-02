@@ -4,15 +4,14 @@ import App from './App';
 import firebase from 'firebase/app';
 import 'firebase/analytics';
 import 'firebase/auth';
-import { firebaseConfig } from './settings';
 import settings from './settings';
 import './lib/utils';
 import { BrowserRouter } from 'react-router-dom';
 
-const app = firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(settings.firebaseConfig);
 firebase.analytics(app);
 
-if (process.env.NODE_ENV === 'development') {
+if (settings.useEmulators) {
   firebase.auth(app).useEmulator('http://localhost:9099');
 }
 

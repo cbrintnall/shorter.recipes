@@ -1,6 +1,20 @@
 {
   "hosting": {
-    "public": "build"
+    "public": "build",
+    "rewrites": [
+      {
+        "source": "/manifest.json",
+        "destination": "/manifest.json"
+      },
+      {
+        "source": "/robots.txt",
+        "destination": "/robots.txt"
+      },
+      {
+        "source": "/**",
+        "function": "ssr"
+      }
+    ]
   },
   "emulators": {
     "storage": {
