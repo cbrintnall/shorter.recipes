@@ -50,8 +50,6 @@ export const addHistory = async (url: string, content: any) => {
                     ...result
                 ]
 
-                console.log(newResult)
-
                 set(historyKey, newResult)
             }
         })

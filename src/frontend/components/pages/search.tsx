@@ -21,7 +21,7 @@ import { RouteComponentProps, useHistory } from 'react-router-dom';
 import StateManager from '../../lib/stateManager';
 import { events } from '../../lib/constants';
 import LandingPage from './landing';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import settings from '../../settings';
 import { isFavorite, markFavorite, removeFavorite } from '../../lib/favorites';
 import { addHistory } from '../../lib/history';

@@ -20,18 +20,14 @@ export const ssr = (req, res) => {
   } else {
     console.log(`URL: ${req.url}, serving bundle: ${bundlePath}`);
 
-    const application = ReactDOMServer.renderToString(
+    const content = ReactDOMServer.renderToString(
       <StaticRouter location={req.url} context={{}}>
         <App />
       </StaticRouter>
     );
 
-    const template = compile(indexHtml)
-    const payload = {
-        asset: `${Settings.hostBase}/${bundlePath}`, 
-        content: application
-    }
-  
-    res.send(template(payload))
+    const final = indexHtml.replace("{{content}}", content);
+
+    res.send(final)
   }
 }

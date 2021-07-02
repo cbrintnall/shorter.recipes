@@ -1,12 +1,7 @@
 import settings from '../settings';
 import React, { useRef, useState, useEffect } from 'react';
 import { isFavorite, markFavorite, removeFavorite } from '../lib/favorites';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
-import InputGroup from 'react-bootstrap/InputGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
+import { Row, Col, Container, InputGroup, FormControl, Button } from 'react-bootstrap';
 import {
   AiOutlineExperiment,
   AiOutlineDown,

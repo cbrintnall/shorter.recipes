@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import * as firebase from "firebase";
-import { AiFillFacebook, AiFillGoogleCircle, AiFillGoogleSquare, AiFillTwitterSquare, AiOutlineFacebook, AiOutlineGoogle, AiOutlineTwitter } from "react-icons/ai";
+import firebase from "firebase";
+import { AiFillTwitterSquare, AiOutlineTwitter } from "react-icons/ai";
 import { IconType } from "react-icons/lib";
 
-const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const twitterProvider = new firebase.auth.TwitterAuthProvider();
-const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 type SignInButtonProps = {
   icon: IconType,
@@ -37,18 +35,6 @@ export const SignInButtons = () => {
   return (
     <div>
       <span>Sign in | </span>
-      {/* <SignInIconButton 
-        icon={AiOutlineFacebook} 
-        hoverIcon={AiFillFacebook}
-        provider={facebookProvider} 
-      />
-      <span> / </span> */}
-      {/* <SignInIconButton 
-        icon={AiOutlineGoogle}
-        hoverIcon={AiFillGoogleSquare}
-        provider={googleProvider} 
-      />
-      <span> / </span> */}
       <SignInIconButton 
         icon={AiOutlineTwitter}
         hoverIcon={AiFillTwitterSquare}

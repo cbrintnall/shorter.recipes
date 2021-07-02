@@ -3,11 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 import { landingUrls } from "../../lib/constants";
 import { getHistory, clearHistory } from "../../lib/history";
 import Button from "react-bootstrap/Button";
-import { useHistory, generatePath, Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { SignInButtons } from "../login-button";
 import _ from "lodash";
 import { UserContext } from "../../lib/auth";
-import * as firebase from "firebase";
+import firebase from "firebase";
 
 const adjustHistorySizeBreakpoint = 425;
 const truncateLength = 25;
@@ -116,7 +116,7 @@ function LandingPage() {
                           </Link>
                         )
                         : (
-                          <a rel="noopener noreferrer" target="_blank" href={generatePath(url.url)}>
+                          <a rel="noopener noreferrer" target="_blank" href={url.url}>
                             {url.title}
                           </a>
                         )
