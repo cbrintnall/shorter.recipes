@@ -8,11 +8,11 @@ module.exports = {
   plugins: [],
   name: 'server',
   entry: {
-    server: path.resolve(__dirname, 'src/functions/index.js'),
+    server: path.resolve(__dirname, '..', 'src', 'functions', 'index.js'),
   },
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'functions'),
+    path: path.resolve(__dirname, '..', 'functions'),
     filename: 'index.js',
     libraryTarget: 'this'
   },

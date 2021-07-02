@@ -1,5 +1,4 @@
 import * as functions from 'firebase-functions';
-import { compile } from 'handlebars';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router';
@@ -21,7 +20,7 @@ export const ssr = (req, res) => {
     console.log(`URL: ${req.url}, serving bundle: ${bundlePath}`);
 
     const content = ReactDOMServer.renderToString(
-      <StaticRouter location={req.url} context={{}}>
+      <StaticRouter location={req.url} context={{}} basename={Settings.pathBase}>
         <App />
       </StaticRouter>
     );

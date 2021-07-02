@@ -10,7 +10,6 @@
     "firebase": "^8.6.8",
     "firebase-admin": "^8.10.0",
     "firebase-functions": "^3.6.1",
-    "handlebars": "^4.7.7",
     "idb-keyval": "^3.2.0",
     "lodash": "^4.17.19",
     "node-fetch": "^2.6.0",
@@ -66,10 +65,10 @@
     "node": "12"
   },
   "scripts": {
-    "build:client:dev": "webpack --config webpack.client.dev.config.js",
-    "build:server:dev": "webpack --config webpack.server.dev.config.js",
-    "watch:client": "webpack --watch --config webpack.client.dev.config.js",
-    "watch:server": "webpack --watch --config webpack.server.dev.config.js",
+    "build:client:dev": "webpack --config webpack/webpack.client.dev.config.js",
+    "build:server:dev": "webpack --config webpack/webpack.server.dev.config.js",
+    "watch:client": "webpack --watch --config webpack/webpack.client.dev.config.js",
+    "watch:server": "webpack --watch --config webpackwebpack.server.dev.config.js",
     "dev": "gulp dev",
     "start": "firebase emulators:start"
   },

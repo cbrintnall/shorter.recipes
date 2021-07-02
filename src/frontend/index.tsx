@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import firebase from 'firebase/app';
-import { firebaseConfig } from './settings';
-import settings from './settings';
 import 'firebase/analytics';
 import 'firebase/auth';
+import { firebaseConfig } from './settings';
+import settings from './settings';
 import './lib/utils';
 import { BrowserRouter } from 'react-router-dom';
 
