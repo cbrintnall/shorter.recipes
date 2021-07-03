@@ -7,11 +7,12 @@ import {
 import AboutPage from './components/pages/about';
 import SearchPage from './components/pages/search';
 import firebase from 'firebase';
-
+import { AppState } from './lib/common.interface';
 import './index.css';
 import { UserContext } from './lib/auth';
+import ResultsPage from './components/pages/results';
 
-function App() {
+function App(props: AppState) {
   const [ user, setUser ] = useState<firebase.User | null>(null);
 
   useEffect(() => {
@@ -23,9 +24,11 @@ function App() {
   return (
     <UserContext.Provider value={user}>
       <Switch>
-        <Route path="/search" component={SearchPage} />
-        <Route path="/about" component={AboutPage} />
-        <Redirect to="/search" />
+        <Route exact path="/" component={SearchPage} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/recipe">
+          <ResultsPage data={props.initialState.recipe}/>
+        </Route>
       </Switch>
     </UserContext.Provider>
   );

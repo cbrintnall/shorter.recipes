@@ -44,7 +44,7 @@ const local: Partial<Configuration> = {
   useEmulators: true,
   urls: {
     functionBasePath: "",
-    serviceUrl: "http://localhost:5001/yadev-firebase/us-central1/main",
+    serviceUrl: "http://localhost:5000/main",
     sampleUrl: "https://www.allrecipes.com/recipe/6874/best-ever-muffins/"
   },
   firebaseConfig: {

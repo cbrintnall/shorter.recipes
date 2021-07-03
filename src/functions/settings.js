@@ -1,5 +1,5 @@
 const common = {
-
+  recipeRequestTimeoutMS: 2000
 }
 
 const local = {}

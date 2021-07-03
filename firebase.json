@@ -11,6 +11,10 @@
         "destination": "/robots.txt"
       },
       {
+        "source": "/main",
+        "function": "main"
+      },
+      {
         "source": "/**",
         "function": "ssr"
       }

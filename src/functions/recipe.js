@@ -4,24 +4,26 @@ import fetch from 'node-fetch';
 export const getRecipeRoute = (req, res) => {
   const { url } = req.query
 
-  res.header('Access-Control-Allow-Origin', '*');
   res.header('Content-Type', 'application/json');
 
   if (!url) {
       res.send(JSON.stringify({ "error": "No URL to extract." }))
   }
 
-  fetch(constructUrl(url))
-      .then(r => r.text())
-      .then(getRecipe)
-      .then(r => {
-          res.send(JSON.stringify(formatResponse(r)))
-      })
-      .catch(err => {
-          console.error(err)
-          res.status(500)
-          res.send(JSON.stringify({"error": err}))
-      })
+  getRecipeData(url)
+    .then(data => {
+        res.send(JSON.stringify(data))
+    })
+    .catch(err => {
+        res.status(500).send(JSON.stringify({ "error": err }))
+    })
+}
+
+export const getRecipeData = url => {
+    return fetch(constructUrl(url))
+        .then(r => r.text())
+        .then(getRecipe)
+        .then(formatResponse)
 }
 
 const getRecipe = (body) => {

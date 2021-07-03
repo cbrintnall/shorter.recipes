@@ -1,11 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Tabs from 'react-bootstrap/Tabs';
-import Tab from 'react-bootstrap/Tab';
+import {
+  Container,
+  Row,
+  Col,
+  ListGroup,
+  Tabs,
+  Tab
+} from 'react-bootstrap';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import StateManager from '../../lib/stateManager';
 import { events } from '../../lib/constants';
@@ -187,16 +189,14 @@ function DesktopLayout(data: Result) {
 
 // TODO add back in props ResultsProps
 export default function ResultsPage(props: any) {
-  const { data } = props;
+  const { data, location } = props;
+
+  const resultsData = location ? location.state.results : data;
 
   return (
     <Container fluid style={{ margin: "0px" }}>
-      {
-        MobileLayout(data)
-      }
-      {
-        DesktopLayout(data)
-      }
+      <MobileLayout {...resultsData} />
+      <DesktopLayout {...resultsData} />
     </Container>
   )
 }

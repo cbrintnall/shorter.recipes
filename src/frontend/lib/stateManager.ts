@@ -1,4 +1,10 @@
+import React from 'react';
+import { AppState } from './common.interface';
+
 type StatefulCallback = (x: {}) => void;
+
+// State providers
+export const InitialStateContext = React.createContext<AppState | undefined>(undefined);
 
 class StateManager {
     static instance: StateManager;

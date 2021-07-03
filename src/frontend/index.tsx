@@ -15,9 +15,12 @@ if (settings.useEmulators) {
   firebase.auth(app).useEmulator('http://localhost:9099');
 }
 
-ReactDOM.hydrate(
-  <BrowserRouter basename={settings.urls.functionBasePath}>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
-)
+// Check for any initial state from SSR
+if (window && (window as any).__INITIAL_STATE__) {
+  ReactDOM.hydrate(
+    <BrowserRouter basename={settings.urls.functionBasePath}>
+      <App initialState={(window as any).__INITIAL_STATE__ as { recipe: Record<string, unknown> }}/>
+    </BrowserRouter>,
+    document.getElementById('root')
+  )
+}

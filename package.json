@@ -32,7 +32,6 @@
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^5.2.6",
     "firebase-tools": "^9.14.0",
-    "gulp": "^4.0.2",
     "html-webpack-plugin": "^5.3.2",
     "mini-css-extract-plugin": "^2.0.0",
     "postcss-loader": "^6.1.0",
@@ -70,9 +69,9 @@
     "build:server:dev": "webpack --config webpack/webpack.config.js --env BUNDLE=server --env BUILD=development",
     "watch:client": "webpack --watch --config webpack/webpack.config.js --env BUNDLE=client",
     "watch:server": "webpack --watch --config webpack/webpack.config.js --env BUNDLE=server",
-    "dev": "gulp dev",
     "setup": "gulp setup",
-    "start": "firebase emulators:start"
+    "emulators": "firebase emulators:start",
+    "start": "node ./scripts/development.js"
   },
   "repository": {
     "type": "git",

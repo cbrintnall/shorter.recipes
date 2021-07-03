@@ -16,12 +16,10 @@ import {
   AiFillHeart
 } from 'react-icons/ai';
 import { getUrl } from '../../module/getData';
-import ResultsPage from './results';
-import { RouteComponentProps, useHistory } from 'react-router-dom';
+import { generatePath, Redirect, RouteComponentProps, useHistory } from 'react-router-dom';
 import StateManager from '../../lib/stateManager';
 import { events } from '../../lib/constants';
 import LandingPage from './landing';
-import firebase from 'firebase/app';
 import settings from '../../settings';
 import { isFavorite, markFavorite, removeFavorite } from '../../lib/favorites';
 import { addHistory } from '../../lib/history';
@@ -231,7 +229,6 @@ export default function SearchPage(props: RouteComponentProps) {
 
       getUrl(correctedUrl)
         .then((results) => {
-          firebase.analytics().logEvent('search' as string, { search_term: url })
           addHistory(url as string, results) // TODO: handle ' as string '
           setResults(results as Results);
         })
@@ -241,8 +238,6 @@ export default function SearchPage(props: RouteComponentProps) {
         .finally(() => {
           setSearching(false);
         })
-    } else {
-      setResults({})
     }
   }, [url])
 
@@ -256,7 +251,11 @@ export default function SearchPage(props: RouteComponentProps) {
       />
       {
         Object.keys(results).length > 0 ?
-          <ResultsPage data={results} /> :
+          <Redirect to={{ 
+            pathname: generatePath("/recipe"),
+            search: `?url=${url}`,
+            state: { results } 
+          }} /> :
           <LandingPage />
       }
     </Container>
