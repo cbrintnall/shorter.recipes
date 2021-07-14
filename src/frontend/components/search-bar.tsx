@@ -1,17 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import settings from '../settings';
-import { isFavorite, markFavorite, removeFavorite } from '../lib/favorites';
-import StateManager from '../lib/stateManager';
-import { events } from '../lib/constants';
+import React, { useState } from 'react';
 import {
-  Row,
   Col,
   InputGroup,
   FormControl,
   Button,
-  Container
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 export type Results = {
   title?: string
@@ -19,16 +12,17 @@ export type Results = {
 
 export function SearchBar() {
   const [url, setUrl] = useState("");
-  const searchEntryRef = useRef(null);
-
-  console.log(url)
 
   return (
-    <Container fluid className="search-bar">
-      <Row className="search-entry" ref={searchEntryRef}>
+    <>
+      <a href="/" className="search-bar-header">
+        <h1 style={{ color: 'whitesmoke', marginRight: '3px' }}> 
+          shorter.recipes 
+        </h1>
+      </a>
+      <Col className="search-bar-input">
         <InputGroup className="search-entry-group">
           <FormControl
-            style={{ transform: "translateY(-1px)" }}
             className="search-entry-input"
             placeholder="Paste a URL.."
             aria-label="URL search"
@@ -49,7 +43,7 @@ export function SearchBar() {
             </a>
           </Button>
         </InputGroup>
-      </Row>
-    </Container>
+      </Col>
+    </>
   )
 }

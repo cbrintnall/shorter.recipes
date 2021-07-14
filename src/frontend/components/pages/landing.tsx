@@ -81,7 +81,7 @@ function LandingPage() {
               }}
             </UserContext.Consumer>
             <hr />
-            <h1>
+            <h2>
               <UserContext.Consumer>
                 {(value) => (
                   <div>
@@ -93,41 +93,43 @@ function LandingPage() {
                   </div>
                 )}
               </UserContext.Consumer>
-            </h1>
+            </h2>
             <p>
               {" "}
               Thanks for using "<b>shorter.recipes</b>"{" "}
             </p>
             <p>
               {" "}
-              Please use the search bar below to enter a url, simplify the
+              Please use the search bar to enter a url, shorten the
               recipe, and get cookin.
             </p>
-            <hr />
-            <div>
-              {landingUrls.map((url, i) => {
-                return (
-                  <span key={url.url}>
-                    {
-                      url.internal 
-                        ? (
-                          <Link rel="noopener noreferrer" target="_blank" to={url.url}>
-                            {url.title}
-                          </Link>
-                        )
-                        : (
-                          <a rel="noopener noreferrer" target="_blank" href={url.url}>
-                            {url.title}
-                          </a>
-                        )
-                    }
-                    {
-                      // This is to ensure we don't put a bar at the very end of the list.
-                      i !== landingUrls.length - 1 && <span> | </span>
-                    }
-                  </span>
-                );
-              })}
+            <div className="landing-intro-links">
+              <hr />
+              <div>
+                {landingUrls.map((url, i) => {
+                  return (
+                    <span key={url.url}>
+                      {
+                        url.internal 
+                          ? (
+                            <Link rel="noopener noreferrer" target="_blank" to={url.url}>
+                              {url.title}
+                            </Link>
+                          )
+                          : (
+                            <a rel="noopener noreferrer" target="_blank" href={url.url}>
+                              {url.title}
+                            </a>
+                          )
+                      }
+                      {
+                        // This is to ensure we don't put a bar at the very end of the list.
+                        i !== landingUrls.length - 1 && <span> | </span>
+                      }
+                    </span>
+                  );
+                })}
+              </div>
             </div>
           </div>
           {userHistory && userHistory.length > 0 && (
@@ -143,10 +145,10 @@ function LandingPage() {
               />
               <div className={smallMobile ? "d-flex flex-column" : undefined}>
                 {userHistory.map((hist, i) => (
-                  <div
+                  <a 
                     key={i}
                     className="history-icon-parent"
-                    onClick={(_) => history.push(`/recipe?url=${hist.url}`)}
+                    href={`/recipe?url=${hist.url}`}
                   >
                     <span> {i + 1}. </span>
                     <span className="history-icon">
@@ -154,7 +156,7 @@ function LandingPage() {
                         length: truncateLength,
                       })}
                     </span>
-                  </div>
+                  </a>
                 ))}
               </div>
               <div className={smallMobile ? "d-none" : undefined}>

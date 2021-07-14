@@ -95,6 +95,10 @@ body {
   border: none !important;
 }
 
+.history-icon-parent {
+  display: block;
+}
+
 .history-icon {
   color: #303030;
   text-decoration: underline;
@@ -105,6 +109,11 @@ body {
   overflow: hidden;
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
+  color: black;
+}
+
+.history-icon-parent:hover > span {
+  color: white;
 }
 
 .history-icon-parent:hover > .history-icon {
@@ -127,10 +136,6 @@ body {
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-}
-
-.landing-page-container {
-  height: 100%;
 }
 
 .landing-page-body {
@@ -202,7 +207,11 @@ body {
 }
 
 .search-entry {
-  padding: 20px 40px 20px 40px;
+  background-color: #303030;
+}
+
+.page-row {
+  height: 100%;
 }
 
 input.search-entry-input,
@@ -226,12 +235,6 @@ input.search-entry-input:focus {
 
 .form-control:focus {
   box-shadow: 0 0 0 0 transparent !important;
-}
-
-.search-bar {
-  width: 100%;
-  background-color: #303030;
-  z-index: 100;
 }
 
 .search-box {
@@ -285,7 +288,30 @@ input.search-entry-input:focus {
   text-decoration-color: white !important;
 }
 
+.search-entry {
+  padding: 20px 40px 20px 40px;
+}
+
+.search-bar-input {
+  border-left: '1px solid whitesmoke'; 
+  margin-left: '3px';
+}
+
+@media screen and (max-height: 700px) {
+  .landing-intro-links {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 450px) {
+  .search-entry {
+    padding: 20px 0px 20px 0px;
+  }
+  
+  .search-bar-header {
+    display: none;
+  }
+
   .search-bar-info {
     display: none;
   }
