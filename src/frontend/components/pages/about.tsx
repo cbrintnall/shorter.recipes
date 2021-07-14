@@ -23,7 +23,7 @@ function AboutPage(props: RouteComponentProps) {
             <p> Thanks for swinging by! </p>
             <p> - Christian </p>
             <hr />
-            <Link to={"/search"}>
+            <Link to={"/"}>
               <div className="back-button">
                 <AiOutlineLeftSquare
                   className="back-icon"

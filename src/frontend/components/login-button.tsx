@@ -40,8 +40,6 @@ export const SignInButtons = () => {
         hoverIcon={AiFillTwitterSquare}
         provider={twitterProvider} 
       />
-      {/* <span> / </span> */}
-      <span style={{float:'right'}}> (More sign-in methods coming soon) </span>
     </div>
   );
 };

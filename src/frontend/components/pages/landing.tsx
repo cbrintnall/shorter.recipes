@@ -146,7 +146,7 @@ function LandingPage() {
                   <div
                     key={i}
                     className="history-icon-parent"
-                    onClick={(_) => history.push(`/search?url=${hist.url}`)}
+                    onClick={(_) => history.push(`/recipe?url=${hist.url}`)}
                   >
                     <span> {i + 1}. </span>
                     <span className="history-icon">

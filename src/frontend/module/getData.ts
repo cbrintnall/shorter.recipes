@@ -1,5 +1,4 @@
 import constants from '../settings';
-import { Results } from '../components/pages/search';
 import { isFavorite, getFavoriteContents } from '../lib/favorites'
 
 type Result = {

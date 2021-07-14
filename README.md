@@ -1,4 +1,4 @@
-# [shorter.recipes](https://shorter.recipes/search) 🍳
+# [shorter.recipes](https://shorter.recipes) 🍳
 
 ## Prerequisites
 

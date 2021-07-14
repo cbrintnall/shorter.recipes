@@ -231,12 +231,7 @@ input.search-entry-input:focus {
 .search-bar {
   width: 100%;
   background-color: #303030;
-  position: fixed;
-  bottom: 0;
   z-index: 100;
-  animation-name: var(--search-bar-animation-state);
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
 }
 
 .search-box {

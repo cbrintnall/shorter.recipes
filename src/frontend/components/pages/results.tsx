@@ -8,6 +8,7 @@ import {
   Tabs,
   Tab
 } from 'react-bootstrap';
+import { Redirect } from 'react-router';
 import { AiOutlineCheck, AiOutlineClose } from 'react-icons/ai';
 import StateManager from '../../lib/stateManager';
 import { events } from '../../lib/constants';
@@ -178,10 +179,7 @@ function DesktopLayout(data: Result) {
         </Col>
       }
       {
-        Object.keys(data).length === 0 &&
-        <Col style={{ textAlign: "center" }}>
-          <h2> Fetching your recipe.. </h2>
-        </Col>
+        Object.keys(data).length === 0 && <Redirect to="/" />
       }
     </Row>
   )
