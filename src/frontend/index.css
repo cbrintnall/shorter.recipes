@@ -1,0 +1,389 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#root,
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  --search-bar-animation-state: searchBarClosed;
+  --search-bar-animation: searchOpen;
+  --base-button-padding: 1px;
+  --move-bar-height: 58px;
+}
+
+@keyframes searchBarOpen {
+  from {
+    transform: translateY(var(--move-bar-height));
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes searchBarClosed {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(var(--move-bar-height));
+  }
+}
+
+@keyframes searchClosed {
+  from {
+    transform: rotate(180deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes searchOpen {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes buttonHover {
+  from {
+    border: var(--base-button-padding) solid transparent;
+  }
+  to {
+    border: var(--base-button-padding) solid white;
+  }
+}
+
+@keyframes iconHover {
+  from {
+    background-color: inherit;
+  }
+  to {
+    background-color: black;
+  }
+}
+
+@keyframes backButtonTranslate {
+  from {
+    transform: translateX(0px) scale(1);
+  }
+
+  to {
+    transform: translateX(-10px) scale(1.1);
+  }
+}
+
+.recipe-button {
+  background-color: #303030 !important;
+  border: none !important;
+}
+
+.history-icon-parent {
+  display: block;
+}
+
+.history-icon {
+  color: #303030;
+  text-decoration: underline;
+}
+
+.history-icon-parent > span {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  color: black;
+}
+
+.history-icon-parent:hover > span {
+  color: white;
+}
+
+.history-icon-parent:hover > .history-icon {
+  color: white;
+}
+
+.history-separator {
+  margin: 0px 10px 0px 10px;
+  color: white;
+}
+
+.back-button:hover {
+  cursor: pointer;
+}
+
+.back-button:hover > .back-icon {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  animation-name: backButtonTranslate;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.page-row {
+  height: 100%;
+}
+
+.landing-page-body {
+  font-family: "Roboto Slab", serif;
+  display: flex;
+  justify-content: center;
+}
+
+.result-item {
+  text-align: left;
+  margin-top: auto;
+}
+
+.result-item.checked {
+  color: grey;
+}
+
+.result-icon-parent:hover {
+  color: white;
+}
+
+.disabled-icon {
+  pointer-events: none;
+}
+
+.disabled-icon .search-icon {
+  color: grey;
+}
+
+.search-icon-toggle {
+  animation-fill-mode: forwards;
+  animation-name: var(--search-bar-animation);
+  animation-duration: 0.5s;
+}
+
+.search-bar-info {
+  color: white;
+  margin: 10px;
+  text-align: center;
+}
+
+.search-icon-divider {
+  padding: 5px 5px 5px 5px;
+  height: 100%;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.history-icon-parent,
+.search-icon-parent {
+  border: 1px solid transparent;
+  padding: 5px;
+}
+
+.history-icon-parent:hover,
+.search-icon-parent:hover {
+  border-radius: 5px;
+  animation-name: iconHover;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  cursor: pointer;
+}
+
+.search-bar-header {
+  color: whitesmoke;
+  margin-right: 3px;
+}
+
+.search-bar-header:hover {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.search-bar-input {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  color: white;
+}
+
+.search-icons {
+  padding: 5px 20px 20px 20px;
+  height: 25px;
+}
+
+.search-entry {
+  background-color: #303030;
+}
+
+.app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+input.search-entry-input,
+input.search-entry-input:focus {
+  background-color: transparent;
+  border: none !important;
+  border-bottom: 1px solid white !important;
+  border-radius: 0px !important;
+  color: white !important;
+}
+
+input.search-entry-input:hover {
+  animation-name: iconHover;
+  animation-duration: 0.75s;
+  animation-fill-mode: forwards;
+}
+
+input.search-entry-input:focus {
+  background-color: black;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0 transparent !important;
+}
+
+.search-box {
+  padding: 30px;
+  background-color: #111111;
+  border-radius: 15px;
+  margin: 20px;
+}
+
+.recipe-text {
+  font-family: "Roboto Slab", serif;
+}
+
+.errors {
+  list-style-type: none;
+  padding-inline-start: 0px;
+  padding-top: 10px;
+  word-wrap: break-word;
+}
+
+.important {
+  text-align: center;
+}
+
+.chosen-item {
+  color: white;
+  background-color: #212529 !important;
+  cursor: pointer;
+}
+
+.mobile-result {
+  width: 100%;
+  margin: 0px !important;
+}
+
+.mobile-results-page {
+  display: none !important;
+}
+
+.mobile-tab {
+  border: 0px solid transparent !important;
+  border-color: none;
+  background-color: #303030 !important;
+  color: white !important;
+  border-radius: 0px !important;
+  font-family: "Roboto Slab", serif;
+}
+
+.mobile-tab.active {
+  text-decoration: underline !important;
+  text-decoration-color: white !important;
+}
+
+.search-entry {
+  padding: 10px 20px 10px 20px;
+}
+
+.search-bar-input {
+  border-left: '1px solid whitesmoke'; 
+  margin-left: '3px';
+}
+
+@media screen and (max-height: 700px) {
+  .landing-intro-links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .search-entry {
+    padding: 20px 0px 20px 0px;
+  }
+  
+  .search-bar-header {
+    display: none;
+  }
+
+  .search-bar-info {
+    display: none;
+  }
+
+  .desktop-results-page {
+    display: none !important;
+  }
+
+  .mobile-results-page {
+    display: flex !important;
+  }
+
+  .result-item {
+    padding-left: 8px !important;
+    width: 100%;
+  }
+
+  .list-group {
+    width: 100%;
+  }
+
+  .important {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .search-box {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    border-radius: 0px;
+    margin: 0px;
+  }
+}
+
+.login-button {
+  background-color: #212529 !important;
+}
+
+.signin-button {
+  display: 'inline' !important; 
+  padding: '4px';
+}
+
+.signin-button:hover {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 663px) {
+  .errors {
+    padding-left: 30px;
+  }
+}

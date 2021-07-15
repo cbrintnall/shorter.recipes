@@ -1,0 +1,13 @@
+
+{
+  "deploy": {
+    "development": {
+      "serverBuild": "build:server:dev",
+      "clientBuild": "build:client:dev"
+    },
+    "production": {
+      "serverBuild": "build:server:prod",
+      "clientBuild": "build:client:prod"
+    }
+  }
+}

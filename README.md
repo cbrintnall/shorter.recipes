@@ -1,18 +1,20 @@
-# [shorter.recipes](https://shorter.recipes/search) 🍳
+# [shorter.recipes](https://shorter.recipes) 🍳
 
-## Goals
+## Prerequisites
 
-- [x] Make recipes / ingredients easier to read by only providing a URL
-- [x] Create a UI that easily displays both on desktop _and_ mobile
-- [x] Allow users to store their history / favorites and view offline via PWA
-- [x] Practice Firebase / React / "Advanced" CSS
+* Node 12.13.0
+* yarn
 
-## Non-Goals
+## Setup
 
-- [ ] Create a recipe host website
-- [ ] Use a database
-- [ ] Create an insane web-app that takes years to load
+* clone repo
+* navigate to root of repo
+* run `yarn setup`
+* done!
 
-## Preview 
+## Develop
 
-![Check it out!](https://i.imgur.com/BGeEA4o.png)
+* walk through `setup` in `readme.md`
+* run `yarn dev`
+* open browser to `http://localhost:5000`
+* done!
