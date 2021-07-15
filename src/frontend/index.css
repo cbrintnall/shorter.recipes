@@ -138,8 +138,14 @@ body {
   animation-direction: alternate;
 }
 
+.page-row {
+  height: 100%;
+}
+
 .landing-page-body {
   font-family: "Roboto Slab", serif;
+  display: flex;
+  justify-content: center;
 }
 
 .result-item {
@@ -197,6 +203,21 @@ body {
   cursor: pointer;
 }
 
+.search-bar-header {
+  color: whitesmoke;
+  margin-right: 3px;
+}
+
+.search-bar-header:hover {
+  color: whitesmoke;
+  text-decoration: none;
+}
+
+.search-bar-input {
+  display: flex;
+  align-items: center;
+}
+
 .search-icon {
   color: white;
 }
@@ -210,8 +231,10 @@ body {
   background-color: #303030;
 }
 
-.page-row {
+.app-container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 input.search-entry-input,
@@ -289,7 +312,7 @@ input.search-entry-input:focus {
 }
 
 .search-entry {
-  padding: 20px 40px 20px 40px;
+  padding: 10px 20px 10px 20px;
 }
 
 .search-bar-input {

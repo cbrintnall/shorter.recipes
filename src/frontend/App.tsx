@@ -23,7 +23,7 @@ function App(props: AppState) {
   })
 
   return (
-    <Container fluid>
+    <Container fluid className="app-container">
       <Row className="search-entry">
         <SearchBar />
       </Row>

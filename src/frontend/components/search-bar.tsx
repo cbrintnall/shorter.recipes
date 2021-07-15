@@ -16,7 +16,7 @@ export function SearchBar() {
   return (
     <>
       <a href="/" className="search-bar-header">
-        <h1 style={{ color: 'whitesmoke', marginRight: '3px' }}> 
+        <h1> 
           shorter.recipes 
         </h1>
       </a>
