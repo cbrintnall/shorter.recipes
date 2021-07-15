@@ -21,7 +21,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(), 
     new HtmlWebpackPlugin(htmlWebpackOptions),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin(
+      {
+        filename: '[name].[contenthash].css'
+      }
+    ),
+    // Copy over public files to be served outside of app itself
     new CopyPlugin({
       patterns: [
         { from: path.resolve(__dirname, 'public', 'manifest.json'), to: buildPath },
