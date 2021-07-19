@@ -5,35 +5,16 @@ import { StaticRouter } from 'react-router';
 import App from '../frontend/App';
 import indexHtml from './index.html';
 import { getRecipeData } from './recipe';
-import settings from './settings';
 
 export const ssr = (req, res) => {
-  const initialState = {};
-  
   if (req.query.url) {
-    let requestTimedOut = false;
-
-    // Don't want too long for request, send content instead
-    const timeout = setTimeout(() => {
-      requestTimedOut = true;
-      sendSsrWithData(req, res);
-    }, settings.recipeRequestTimeoutMS)
-
     getRecipeData(req.query.url)
       .then(data => { 
         // Guard against sending again since timeout has happened
-        if (!requestTimedOut) {
-          clearTimeout(timeout);
-          initialState["recipe"] = data;
-          sendSsrWithData(req, res, initialState);
-        }
+        sendSsrWithData(req, res, { recipe: data });
       })
       .catch(err => {
-        // Guard against sending again since timeout has happened
-        if (!requestTimedOut) {
-          clearTimeout(timeout);
-          sendSsrWithData(req, res); 
-        }
+        sendSsrWithData(req, res); 
       })
   } else {
     sendSsrWithData(req, res);

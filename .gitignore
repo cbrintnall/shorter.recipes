@@ -35,6 +35,7 @@ yarn-error.log*
 dist/
 
 functions
+!src/functions
 
 src/functions/index.html
 report.*.json

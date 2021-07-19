@@ -27,7 +27,7 @@
     "functions": {
       "port": 5001
     },
-    "database": {
+    "firestore": {
       "port": 9000
     },
     "hosting": {

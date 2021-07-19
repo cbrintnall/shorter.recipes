@@ -27,22 +27,12 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(js|tsx|ts)?$/,
         loader: 'ts-loader',
         options: {
           configFile: 'tsconfig.json',
           transpileOnly: true
         },
-      },
-      {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
       },
       {
         test: /\.css?$/,
